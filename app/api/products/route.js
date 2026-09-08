@@ -4,19 +4,16 @@ import Product from "@/models/Product";
 export async function GET() {
   try {
     await connectDB();
-
     const Products = await Product.find();
-
     return Response.json(Products);
   } catch (error) {
+    console.error("PRODUCTS API ERROR:", error); // add this
     return Response.json(
-      { message: "Failed to fectch products" },
+      { message: "Failed to fetch products", error: error.message }, // expose error.message temporarily
       { status: 500 }
     );
   }
 }
-
-
 
 export async function POST(request) {
   try {
