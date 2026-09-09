@@ -4,12 +4,13 @@ import Product from "@/models/Product";
 export async function GET() {
   try {
     await connectDB();
-    const Products = await Product.find();
-    return Response.json(Products);
+
+    const products = await Product.find();
+
+    return Response.json(products);
   } catch (error) {
-    console.error("PRODUCTS API ERROR:", error); // add this
     return Response.json(
-      { message: "Failed to fetch products", error: error.message }, // expose error.message temporarily
+      { message: "Failed to fetch products" },
       { status: 500 }
     );
   }
@@ -18,13 +19,23 @@ export async function GET() {
 export async function POST(request) {
   try {
     await connectDB();
+
     const body = await request.json();
 
     const product = await Product.create(body);
-    return Response.json(product, {
-      status: 201,
-    });
+
+    return Response.json(
+      {
+        message: "Product created successfully",
+        product,
+      },
+      {
+        status: 201,
+      }
+    );
   } catch (error) {
+    console.error(error);
+
     return Response.json(
       {
         message: "Failed to create product",

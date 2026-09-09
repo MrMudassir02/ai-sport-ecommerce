@@ -43,7 +43,7 @@ export default function Home() {
     <main>
       {/* HERO */}
 
-      <section className="bg-gradient-to-r from-gray-950 via-gray-900 to-gray-800 px-6 py-20 text-white">
+      <section className="bg-linear-to-r from-gray-950 via-gray-900 to-gray-800 px-6 py-20 text-white">
         <div className="mx-auto max-w-7xl">
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-orange-400">
             Trusted Cricket Store
